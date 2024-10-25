@@ -35,7 +35,7 @@ architecture testbench of tb_tt_um_tobimckellar_top is
 
     signal simDone : std_logic := '0';
 
-    constant CLK_PERIOD : time := 1 ns;  -- 100 kHz clock period
+    constant CLK_PERIOD : time := 100 us;  -- 10 kHz clock period
 
 begin
 
@@ -82,20 +82,32 @@ begin
         -- Test 1: disable the system and observe initial output
         ui_in(7) <= '0';
 
-        wait for 10 us;
+        wait for 1000 us;
         assert (uo_out(7) = '0')
             report "Test 1 failed: uo_out(7) (pwm_out) should be '0' when ui_in(7) (pwm_enable) is '0'."
             severity error;
 
         ui_in(7) <= '1';
-        wait for 5 us;
+        wait for 5000 us;
 
         ui_in(6) <= '1';
-        wait for 5 us;
+        wait for 5000 ms;
+
+        ui_in(5 downto 0) <= "000001";
+        wait for 5000 ms;
+
+        ui_in(5 downto 0) <= "000010";
+        wait for 5000 ms;
+
+        ui_in(5 downto 0) <= "010000";
+        wait for 5000 ms;
+
+        ui_in(5 downto 0) <= "100000";
+        wait for 5000 ms;
 
         -- Test 3: Disable PWM and observe output
         ui_in(7) <= '0'; -- Disable PWM
-        wait for 5 us;
+        wait for 500 us;
 
         assert (uo_out(7) = '0')
             report "Test 2 failed: uo_out(7) should be '0' when enable_pwm is '0'."

@@ -33,14 +33,15 @@ end entity tt_um_tobimckellar_top;
 
 architecture behavioural of tt_um_tobimckellar_top is
 
-    signal ref : std_logic_vector(5 downto 0);
-    signal pwm_out : std_logic;
-    signal counter : integer;
-    signal enable_pwm : std_logic;
-    signal breathe_state : std_logic;
     constant MAX_COUNT : integer := 64 - 1; -- 1 MHz / 1000
     constant MAX_AMPLITUDE : integer := MAX_COUNT;
     constant ROM_ENTRIES : integer := 100;
+
+    signal ref : std_logic_vector(5 downto 0);
+    signal pwm_out : std_logic;
+    signal counter : integer range 0 to MAX_COUNT;
+    signal enable_pwm : std_logic;
+    signal breathe_state : std_logic;
 
     type rom_type is array(0 to ROM_ENTRIES - 1) of integer range 0 to max_amplitude;
 
@@ -119,14 +120,15 @@ begin
 
 
     sin_ref : process (clk) is
-        variable clock_div : integer := 50;
+        variable clock_div : integer := 10;
         variable clock_ticks : integer := 0;
     begin
         if rising_edge(clk) then
             if rst_n = '0' then
                 index <= start_index;
             else
-                if clock_ticks = clock_div then
+                clock_div := 10*to_integer(unsigned(ref));
+                if clock_ticks > clock_div then
                     clock_ticks := 0;
                 else
                     clock_ticks := clock_ticks + 1;
