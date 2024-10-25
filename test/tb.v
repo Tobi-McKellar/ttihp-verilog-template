@@ -1,7 +1,7 @@
 `default_nettype none
 `timescale 1ns / 1ps
 
-module tb_tt_um_tobimckellar_top;
+module tb;
 
   // Inputs and Outputs
   reg clk;

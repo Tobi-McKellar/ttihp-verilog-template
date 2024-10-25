@@ -8,7 +8,7 @@ module tt_um_tobimckellar_top (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-  wire [5:0] ref;
+  wire [5:0] refa;
   wire pwm_out;
   wire [5:0] counter;
   wire enable_pwm;
@@ -74,7 +74,7 @@ module tt_um_tobimckellar_top (
   assign uio_out = 8'b00000000;  // Connect uio_out to ground
   // assign uio_in = 8'b00000000;   // Connect uio_in to ground
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:40:12  */
-  assign ref = n6_o; // (signal)
+  assign refa = n6_o; // (signal)
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:41:12  */
   assign pwm_out = n92_q; // (signal)
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:42:12  */
@@ -120,7 +120,7 @@ module tt_um_tobimckellar_top (
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:104:34  */
   assign n28_o = ~breathe_state;
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:105:25  */
-  assign n29_o = {25'b0, ref};  //  uext
+  assign n29_o = {25'b0, refa};  //  uext
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:105:51  */
   assign n30_o = {1'b0, n29_o};  //  uext
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:105:51  */
@@ -153,7 +153,7 @@ module tt_um_tobimckellar_top (
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:127:22  */
   assign n53_o = ~rst_n;
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:130:33  */
-  assign n54_o = {25'b0, ref};  //  uext
+  assign n54_o = {25'b0, refa};  //  uext
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:130:32  */
   assign n55_o = {1'b0, n54_o};  //  uext
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:130:32  */

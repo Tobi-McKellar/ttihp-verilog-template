@@ -37,7 +37,7 @@ architecture behavioural of tt_um_tobimckellar_top is
     constant MAX_AMPLITUDE : integer := MAX_COUNT;
     constant ROM_ENTRIES : integer := 100;
 
-    signal ref : std_logic_vector(5 downto 0);
+    signal ref_in : std_logic_vector(5 downto 0);
     signal pwm_out : std_logic;
     signal counter : integer range 0 to MAX_COUNT;
     signal enable_pwm : std_logic;
@@ -73,7 +73,7 @@ begin
 
     enable_pwm <= ui_in(7);
     breathe_state <= ui_in(6);
-    ref <= ui_in(5 downto 0);
+    ref_in <= ui_in(5 downto 0);
     uo_out(7) <= pwm_out;
     uo_out(6 downto 0) <= (others => '0');
     uio_oe(7 downto 0) <= (others => '0');
@@ -102,7 +102,7 @@ begin
                 pwm_out <= '0';
             else
                 if breathe_state = '0' then
-                    if (to_integer(unsigned(ref)) > counter) then
+                    if (to_integer(unsigned(ref_in)) > counter) then
                         pwm_out <= '1' and enable_pwm;
                     else
                         pwm_out <= '0';
@@ -127,7 +127,7 @@ begin
             if rst_n = '0' then
                 index <= start_index;
             else
-                clock_div := 10*to_integer(unsigned(ref));
+                clock_div := 10*to_integer(unsigned(ref_in));
                 if clock_ticks > clock_div then
                     clock_ticks := 0;
                 else
