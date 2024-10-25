@@ -49,7 +49,7 @@ module tb;
 
     // Initialize VCD waveform dumping
     $dumpfile("tb_tt_um_tobimckellar_top.vcd");
-    $dumpvars(0, tb_tt_um_tobimckellar_top);
+    $dumpvars(0, tb);
 
     // Stimulus process
     #10000;               // Wait 10 us
