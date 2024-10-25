@@ -72,7 +72,7 @@ module tt_um_tobimckellar_top (
   assign uo_out = n96_o;
   assign uio_oe = 8'b00000000;   // Connect uio_oe to ground
   assign uio_out = 8'b00000000;  // Connect uio_out to ground
-  assign uio_in = 8'b00000000;   // Connect uio_in to ground
+  // assign uio_in = 8'b00000000;   // Connect uio_in to ground
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:40:12  */
   assign ref = n6_o; // (signal)
   /* vhdlsrc/tt_um_tobimckellar_top.vhd:41:12  */
